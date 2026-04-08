@@ -11,6 +11,10 @@ export function ProductDetailPage({ product, onSelectProduct }) {
     <main className="pb-10">
       <section className="section-pad pb-4 pt-3">
         <div className="container-shell">
+          <div className="mb-6 text-sm text-muted">
+            Easty <span className="mx-1">›</span> Toys & baby <span className="mx-1">›</span> {product.name}
+          </div>
+
           <div className="grid gap-8 lg:grid-cols-[88px_1.15fr_0.85fr]">
             <div className="hidden gap-3 lg:grid">
               {product.media.map((media, index) => (
@@ -52,7 +56,7 @@ export function ProductDetailPage({ product, onSelectProduct }) {
                 </button>
               </div>
 
-              <div className="mt-4 flex gap-2 overflow-x-auto lg:hidden">
+              <div className="hide-scrollbar mt-4 flex gap-2 overflow-x-auto lg:hidden">
                 {product.media.map((media, index) => (
                   <button
                     key={media.id}
@@ -103,6 +107,15 @@ export function ProductDetailPage({ product, onSelectProduct }) {
                 <div>
                   <h2 className="text-sm font-semibold text-ink">Delivery</h2>
                   <p className="mt-2 text-sm leading-6 text-muted">{product.delivery}</p>
+                </div>
+
+                <div>
+                  <h2 className="text-sm font-semibold text-ink">Highlights</h2>
+                  <ul className="mt-2 space-y-2 text-sm leading-6 text-muted">
+                    <li>Hand-picked children marketplace presentation</li>
+                    <li>Works across desktop and mobile browsing layouts</li>
+                    <li>Includes hero, carousel rows, and product detail structure</li>
+                  </ul>
                 </div>
               </div>
             </div>

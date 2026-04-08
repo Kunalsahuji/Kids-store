@@ -1,10 +1,85 @@
-const buildMedia = (palette) => [
-  { id: 1, palette, accent: 'circle', label: 'Preview 1' },
-  { id: 2, palette, accent: 'panel', label: 'Preview 2' },
-  { id: 3, palette, accent: 'stack', label: 'Preview 3' },
-  { id: 4, palette, accent: 'dots', label: 'Preview 4' },
-  { id: 5, palette, accent: 'panel', label: 'Preview 5' },
-]
+const px = (id, width = 1200, height = 1200) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${width}&h=${height}&fit=crop`
+
+const mediaAccents = ['circle', 'panel', 'stack', 'dots', 'panel']
+
+const sectionImagePools = {
+  featured: [
+    px('7099960'),
+    px('7099899'),
+    px('27661914'),
+    px('3661471'),
+    px('3661386'),
+    px('6148507'),
+    px('7099925'),
+    px('7600027'),
+    px('8101707'),
+    px('7099895'),
+    px('6148526'),
+    px('3661476'),
+  ],
+  explore: [
+    px('16454822'),
+    px('14531910'),
+    px('16292857'),
+    px('15507957'),
+    px('1666730'),
+    px('2091156'),
+    px('4736584'),
+    px('4466461'),
+    px('1272574'),
+    px('931177'),
+    px('109646'),
+    px('931168'),
+  ],
+  more: [
+    px('265856'),
+    px('3239520'),
+    px('1152077'),
+    px('131018'),
+    px('934070'),
+    px('1926769'),
+    px('4210860'),
+    px('3662667'),
+    px('6044266'),
+    px('996329'),
+    px('380782'),
+    px('3315286'),
+  ],
+  trending: [
+    px('3933020'),
+    px('7099913'),
+    px('3767677'),
+    px('5709661'),
+    px('8613089'),
+    px('3933278'),
+    px('3661448'),
+    px('4473865'),
+    px('6025811'),
+    px('3661245'),
+    px('3933025'),
+    px('3933259'),
+  ],
+}
+
+const buildMedia = (palette, imageSet = []) =>
+  mediaAccents.map((accent, index) => ({
+    id: index + 1,
+    palette,
+    accent,
+    label: `Preview ${index + 1}`,
+    imageUrl: imageSet[index] ?? imageSet[0] ?? null,
+  }))
+
+const buildImageSet = (section, id, customImages) => {
+  if (customImages?.length) {
+    return mediaAccents.map((_, index) => customImages[index] ?? customImages[0])
+  }
+
+  const pool = sectionImagePools[section] ?? sectionImagePools.featured
+  const start = id % pool.length
+  return mediaAccents.map((_, index) => pool[(start + index) % pool.length])
+}
 
 const createProduct = ({
   id,
@@ -19,29 +94,42 @@ const createProduct = ({
   stockNote,
   summary,
   section,
-}) => ({
-  id,
-  name,
-  price,
-  originalPrice,
-  discount,
-  rating,
-  tint,
-  palette,
-  seller,
-  stockNote,
-  summary,
-  section,
-  media: buildMedia(palette),
-  badges: ['Instant download', 'Responsive layout', 'Editable sections'],
-  delivery: 'Digital download',
-  description:
-    'A polished children store website layout inspired by marketplace browsing. Includes responsive homepage sections, category browsing, mobile-first detail flow, and polished commerce visuals for toys, clothing, nursery, and gifting stores.',
-})
+  images,
+}) => {
+  const imageSet = buildImageSet(section, id, images)
+
+  return {
+    id,
+    name,
+    price,
+    originalPrice,
+    discount,
+    rating,
+    tint,
+    palette,
+    seller,
+    stockNote,
+    summary,
+    section,
+    imageUrl: imageSet[0],
+    media: buildMedia(palette, imageSet),
+    badges: ['Instant download', 'Responsive layout', 'Editable sections'],
+    delivery: 'Digital download',
+    description:
+      'A polished children store website layout inspired by marketplace browsing. Includes responsive homepage sections, category browsing, mobile-first detail flow, and polished commerce visuals for toys, clothing, nursery, and gifting stores.',
+  }
+}
 
 export const heroBanner = {
   title: 'Plan the best birthday ever',
   cta: 'Explore our guide',
+  imageUrl: 'https://i.etsystatic.com/ij/2b3b1a/7846623318/ij_680x540.7846623318_9xsco7af.jpg?version=0',
+}
+
+export const heroSecondaryCard = {
+  title: 'Discover the next wave of star sellers',
+  subtitle: 'Shop now',
+  imageUrl: 'https://i.etsystatic.com/ij/049a23/7916371933/ij_600x600.7916371933_8qkv64e2.jpg?version=0',
 }
 
 export const categoryChips = [
@@ -54,15 +142,15 @@ export const categoryChips = [
 ]
 
 export const taxons = [
-  { id: 1, label: 'Toys', tone: 'bg-[#f8e6c9]' },
-  { id: 2, label: 'Clothing', tone: 'bg-[#e8eef9]' },
-  { id: 3, label: 'Party & gifting', tone: 'bg-[#f7e8ec]' },
-  { id: 4, label: 'Nursery', tone: 'bg-[#eaf4e7]' },
-  { id: 5, label: 'Books', tone: 'bg-[#efe6f6]' },
-  { id: 6, label: 'Bags & storage', tone: 'bg-[#f3efe4]' },
+  { id: 1, label: 'Toys', tone: 'bg-[#f8e6c9]', imageUrl: px('7099925', 220, 220) },
+  { id: 2, label: 'Clothing', tone: 'bg-[#e8eef9]', imageUrl: px('3933020', 220, 220) },
+  { id: 3, label: 'Party & gifting', tone: 'bg-[#f7e8ec]', imageUrl: px('6148507', 220, 220) },
+  { id: 4, label: 'Nursery', tone: 'bg-[#eaf4e7]', imageUrl: px('3661386', 220, 220) },
+  { id: 5, label: 'Books', tone: 'bg-[#efe6f6]', imageUrl: px('8613089', 220, 220) },
+  { id: 6, label: 'Bags & storage', tone: 'bg-[#f3efe4]', imageUrl: px('934070', 220, 220) },
 ]
 
-export const allProducts = [
+const baseProducts = [
   createProduct({
     id: 1,
     name: 'Kids Toys Shopify Theme - Responsive Baby Store Website Template',
@@ -275,26 +363,326 @@ export const allProducts = [
   }),
 ]
 
+const generatedFeatured = [
+  {
+    name: 'Playful Blocks Mega Store Theme',
+    price: '₹ 2,140',
+    originalPrice: '₹ 7,100',
+    discount: '69% off',
+    rating: '4.7',
+    tint: 'from-[#d8eef8] to-[#f8fcff]',
+    palette: ['#75b7d7', '#ffe3a9', '#86d7b6'],
+    seller: 'ToyKit Studio',
+    stockNote: 'Trending now',
+    summary: 'Kids-first hero and category flow for toy shops.',
+  },
+  {
+    name: 'Tiny Play Commerce Theme Bundle',
+    price: '₹ 1,980',
+    originalPrice: '₹ 5,980',
+    discount: '67% off',
+    rating: '4.8',
+    tint: 'from-[#e5f2e3] to-[#fbfffa]',
+    palette: ['#80b77f', '#f7dda2', '#8da7df'],
+    seller: 'LittleCommerce',
+    stockNote: 'Editor pick',
+    summary: 'Homepage + collection pages tuned for toy and clothing stores.',
+  },
+  {
+    name: 'Soft Color Nursery Shop Theme',
+    price: '₹ 2,220',
+    originalPrice: '₹ 6,850',
+    discount: '68% off',
+    rating: '4.8',
+    tint: 'from-[#f6ece4] to-[#fff9f6]',
+    palette: ['#f2b9a3', '#f5dfc6', '#b3cde9'],
+    seller: 'Nursery Wave',
+    stockNote: 'Limited offer',
+    summary: 'Soft neutral cards with premium product storytelling.',
+  },
+  {
+    name: 'Creative Kids Storefront UI Kit',
+    price: '₹ 1,760',
+    originalPrice: '₹ 4,990',
+    discount: '65% off',
+    rating: '4.6',
+    tint: 'from-[#e4edf9] to-[#f9fcff]',
+    palette: ['#8aa8dc', '#f5c9d2', '#a4d7be'],
+    seller: 'UX Hatch',
+    stockNote: 'Popular pick',
+    summary: 'Composable sections inspired by modern Etsy-style browsing.',
+  },
+  {
+    name: 'Warm Playroom Layout Theme',
+    price: '₹ 2,330',
+    originalPrice: '₹ 7,220',
+    discount: '67% off',
+    rating: '4.9',
+    tint: 'from-[#f6e8d9] to-[#fffbf7]',
+    palette: ['#d49a6f', '#f2d9aa', '#8db4a3'],
+    seller: 'Playroom Lab',
+    stockNote: 'Best value',
+    summary: 'High-converting tiles and category modules for kid-centric stores.',
+  },
+].map((item, index) =>
+  createProduct({
+    id: 16 + index,
+    section: 'featured',
+    ...item,
+  }),
+)
+
+const generatedExplore = [
+  {
+    name: 'Lavender Bunch Nursery Asset Pack',
+    price: '₹ 430',
+    originalPrice: null,
+    discount: null,
+    rating: '4.8',
+    tint: 'from-[#dcd4f3] to-[#faf8ff]',
+    palette: ['#8f7ac9', '#ccb9ec', '#f8f2ff'],
+    seller: 'Petal Prints',
+    stockNote: 'Handmade',
+    summary: 'Decorative listing visual for nursery-themed storefront rows.',
+  },
+  {
+    name: 'Garden Bloom Photography Bundle',
+    price: '₹ 520',
+    originalPrice: null,
+    discount: null,
+    rating: '4.9',
+    tint: 'from-[#f8dde2] to-[#fffafc]',
+    palette: ['#ef6f88', '#f4c4cf', '#a5d173'],
+    seller: 'Bloom Box',
+    stockNote: 'Top favorite',
+    summary: 'Curated floral imagery style for inspirational browse rows.',
+  },
+  {
+    name: 'Purple Meadow Flower Board',
+    price: '₹ 575',
+    originalPrice: null,
+    discount: null,
+    rating: '4.8',
+    tint: 'from-[#e1dcf8] to-[#faf9ff]',
+    palette: ['#6d68c1', '#9189df', '#f0ebff'],
+    seller: 'Tiny Keepsakes',
+    stockNote: 'Fast download',
+    summary: 'A clean visual card for decorative flower-based collections.',
+  },
+  {
+    name: 'Color Petals Gift Card Collection',
+    price: '₹ 499',
+    originalPrice: null,
+    discount: null,
+    rating: '4.7',
+    tint: 'from-[#f6dde6] to-[#fff9fb]',
+    palette: ['#eb5688', '#f7b7ca', '#fefefe'],
+    seller: 'Flora Lab',
+    stockNote: 'Recent order',
+    summary: 'Craft and gifting visuals for seasonal storefront highlights.',
+  },
+  {
+    name: 'Spring Bud Marketplace Tile Set',
+    price: '₹ 390',
+    originalPrice: null,
+    discount: null,
+    rating: '4.7',
+    tint: 'from-[#e6f0dd] to-[#fcfff9]',
+    palette: ['#7baa5c', '#d4ebb7', '#f8fff0'],
+    seller: 'Green Dot',
+    stockNote: 'Fresh pick',
+    summary: 'Lightweight visual tiles for inspiration-heavy marketplace rows.',
+  },
+  {
+    name: 'Pastel Bouquet Discovery Row Assets',
+    price: '₹ 640',
+    originalPrice: null,
+    discount: null,
+    rating: '4.9',
+    tint: 'from-[#efe6df] to-[#fdfaf7]',
+    palette: ['#cf8ca3', '#f2c2cd', '#d1dbab'],
+    seller: 'Bloom Studio',
+    stockNote: 'Featured listing',
+    summary: 'Supports Etsy-like discovery strip layout with bold visuals.',
+  },
+].map((item, index) =>
+  createProduct({
+    id: 21 + index,
+    section: 'explore',
+    ...item,
+  }),
+)
+
+const generatedMore = [
+  {
+    name: 'Minimal Bracelet Product Card Kit',
+    price: '₹ 699',
+    originalPrice: null,
+    discount: null,
+    rating: '4.7',
+    tint: 'from-[#e9f4f1] to-[#f9fefd]',
+    palette: ['#8dc9be', '#d6eee8', '#f2f9f8'],
+    seller: 'Tiny Gold',
+    stockNote: 'Handmade',
+    summary: 'Jewelry-style card suited for gift-focused toy marketplace rows.',
+  },
+  {
+    name: 'Ear Accessory Showcase Layout',
+    price: '₹ 580',
+    originalPrice: null,
+    discount: null,
+    rating: '4.8',
+    tint: 'from-[#efe5db] to-[#fcf8f4]',
+    palette: ['#d7ad86', '#edd2b9', '#f8efe7'],
+    seller: 'Loop & Hang',
+    stockNote: 'Top favorite',
+    summary: 'A clean card template for accessories and boutique showcases.',
+  },
+  {
+    name: 'Golden Bangle Product Row Theme',
+    price: '₹ 760',
+    originalPrice: null,
+    discount: null,
+    rating: '4.8',
+    tint: 'from-[#f0e4d1] to-[#fffaf0]',
+    palette: ['#d2a45f', '#efd9aa', '#f8f0df'],
+    seller: 'Badge Lab',
+    stockNote: 'Fast dispatch',
+    summary: 'Styled for premium-looking carousel rows and curated product lists.',
+  },
+  {
+    name: 'Warm Fabric Detail Card Set',
+    price: '₹ 540',
+    originalPrice: null,
+    discount: null,
+    rating: '4.6',
+    tint: 'from-[#f3e4d7] to-[#fdf9f6]',
+    palette: ['#cf9b76', '#ead1bf', '#f7ece3'],
+    seller: 'Thread & Toy',
+    stockNote: 'Hot deal',
+    summary: 'Textile-focused product visuals for toy + clothing crossover shops.',
+  },
+  {
+    name: 'Kids Gift Accessory Carousel Pack',
+    price: '₹ 880',
+    originalPrice: null,
+    discount: null,
+    rating: '4.9',
+    tint: 'from-[#e5e9f9] to-[#fbfcff]',
+    palette: ['#7c8ed8', '#d1d9ff', '#f1f4ff'],
+    seller: 'SpinUp',
+    stockNote: 'Recommended',
+    summary: 'A reusable card style system for horizontally scrolling gift rows.',
+  },
+].map((item, index) =>
+  createProduct({
+    id: 27 + index,
+    section: 'more',
+    ...item,
+  }),
+)
+
+const generatedTrending = [
+  {
+    name: 'Rainbow Toy Shelf Builder Theme',
+    price: '₹ 1,990',
+    originalPrice: '₹ 5,320',
+    discount: '62% off',
+    rating: '4.8',
+    tint: 'from-[#ddeeff] to-[#f8fcff]',
+    palette: ['#7db1e8', '#f6cc8f', '#9dd3be'],
+    seller: 'Tiny Commerce',
+    stockNote: 'Trending row',
+    summary: 'Optimized for carousel-led hero and marketplace flow.',
+  },
+  {
+    name: 'Creative Birthday Shop Layout Pack',
+    price: '₹ 1,430',
+    originalPrice: '₹ 4,360',
+    discount: '67% off',
+    rating: '4.7',
+    tint: 'from-[#f7e4dd] to-[#fff9f6]',
+    palette: ['#e49f8a', '#f7d4bf', '#9ac1df'],
+    seller: 'Party Pixel',
+    stockNote: 'Top trend',
+    summary: 'Birthday product modules and event-focused listing blocks.',
+  },
+  {
+    name: 'Kids Boutique Discovery Theme',
+    price: '₹ 2,110',
+    originalPrice: '₹ 6,240',
+    discount: '66% off',
+    rating: '4.9',
+    tint: 'from-[#e8f2de] to-[#fbfff8]',
+    palette: ['#88b76f', '#d8ecbe', '#f5fce9'],
+    seller: 'LittleCommerce',
+    stockNote: 'High conversion',
+    summary: 'Designed for multi-row browsing and recommendation carousels.',
+  },
+  {
+    name: 'Soft Toy Gift Marketplace UI',
+    price: '₹ 1,860',
+    originalPrice: '₹ 5,590',
+    discount: '66% off',
+    rating: '4.8',
+    tint: 'from-[#f4e3ea] to-[#fff9fc]',
+    palette: ['#d786a8', '#f3c0d6', '#fef2f8'],
+    seller: 'ToyKit Studio',
+    stockNote: 'Popular this week',
+    summary: 'Best for playful catalogs with dynamic slider sections.',
+  },
+  {
+    name: 'Minimal Baby Gifting Theme',
+    price: '₹ 1,750',
+    originalPrice: '₹ 4,980',
+    discount: '64% off',
+    rating: '4.7',
+    tint: 'from-[#ebe3d8] to-[#fdfaf6]',
+    palette: ['#c89b6c', '#e9cfad', '#f7ecdf'],
+    seller: 'Nursery Wave',
+    stockNote: 'Limited period',
+    summary: 'Calm merchandising look with rich cross-sell carousel sections.',
+  },
+].map((item, index) =>
+  createProduct({
+    id: 32 + index,
+    section: 'trending',
+    ...item,
+  }),
+)
+
+export const allProducts = [...baseProducts, ...generatedFeatured, ...generatedExplore, ...generatedMore, ...generatedTrending]
+
 export const featuredProducts = allProducts.filter((item) => item.section === 'featured')
 export const exploreProducts = allProducts.filter((item) => item.section === 'explore')
 export const topGiftProducts = allProducts.filter((item) => item.section === 'more')
+export const trendingProducts = [
+  ...allProducts.filter((item) => item.section === 'trending'),
+  ...featuredProducts.slice(0, 3),
+  ...exploreProducts.slice(0, 2),
+]
 
 export const promoMosaic = [
   {
     id: 'promo-main',
-    title: 'Plan the best birthday ever',
+    title: 'Birthday setup essentials curated for playful celebrations',
     cta: 'Explore our guide',
     tone: 'bg-[#d7e3f4]',
+    imageUrl: px('6148507', 1200, 900),
   },
   {
     id: 'promo-cake',
     title: 'Find cake toppers, return gifts, and setup ideas',
+    subtitle: 'Shop party decor',
     tone: 'bg-[#f2e4cb]',
+    imageUrl: px('7099960', 900, 900),
   },
   {
     id: 'promo-floral',
-    title: 'Discover the next wave of floral sellers',
+    title: 'Discover the next wave of star sellers',
+    subtitle: 'Shop now',
     tone: 'bg-[#c3d1c6]',
+    imageUrl: 'https://i.etsystatic.com/ij/049a23/7916371933/ij_600x600.7916371933_8qkv64e2.jpg?version=0',
   },
 ]
 
@@ -305,7 +693,8 @@ export function getProductById(id) {
 }
 
 export const footerColumns = [
-  { title: 'Shop', links: ['Toys', 'Clothing', 'Nursery', 'Birthday'] },
-  { title: 'Sell', links: ['Start selling', 'Seller handbook', 'Teams', 'Affiliates'] },
-  { title: 'About', links: ['Company', 'Careers', 'Press', 'Investors'] },
+  { title: 'Shop', links: ['Gift cards', 'Etsy Registry', 'Sitemap', 'Etsy blog', 'Etsy United Kingdom', 'Etsy Germany', 'Etsy Canada'] },
+  { title: 'Sell', links: ['Sell on Etsy', 'Teams', 'Forums', 'Affiliates & Creators'] },
+  { title: 'About', links: ['Etsy, Inc.', 'Policies', 'Investors', 'Careers', 'Press', 'Impact', 'Legal imprint'] },
+  { title: 'Help', links: ['Help Centre', 'Privacy settings'] },
 ]

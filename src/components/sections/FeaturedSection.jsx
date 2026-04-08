@@ -12,7 +12,9 @@ export function FeaturedSection({ onSelectProduct }) {
               View all
             </a>
             <p className="mt-2 text-sm text-muted">Curated based on your views</p>
-            <div className="mx-auto mt-4 h-20 w-16 rounded-lg bg-gradient-to-br from-[#bbf3ee] to-[#fff] shadow-sm" />
+            <div className="mx-auto mt-4 h-20 w-16 overflow-hidden rounded-lg shadow-sm">
+              <img className="h-full w-full object-cover" src={featuredProducts[0].imageUrl} alt="Children store themes" loading="lazy" />
+            </div>
           </div>
 
           <div>

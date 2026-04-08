@@ -22,7 +22,7 @@ export function ProductCard({ product, onSelect }) {
   }
 
   return (
-    <article className="group">
+    <article className="group snap-start">
       <button className="w-full text-left" type="button" onClick={() => onSelect?.(product.id)} aria-label={product.name}>
         <div className="relative">
           <ProductVisual product={product} />

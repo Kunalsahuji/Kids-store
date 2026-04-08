@@ -1,65 +1,107 @@
-import { useRef, useState } from 'react'
+import { useEffect, useEffectEvent, useRef, useState } from 'react'
 import { Icon } from './Icon'
 import { ProductCard } from './ProductCard'
 
 export function ProductCarousel({ products, onSelectProduct, slidesPerViewDesktop = 5, className = '' }) {
-  const [page, setPage] = useState(0)
-  const mobileTrackRef = useRef(null)
-  const pageSize = slidesPerViewDesktop
-  const maxPage = Math.max(0, Math.ceil(products.length / pageSize) - 1)
-  const visible = products.slice(page * pageSize, page * pageSize + pageSize)
+  const trackRef = useRef(null)
+  const [canPrev, setCanPrev] = useState(false)
+  const [canNext, setCanNext] = useState(true)
+  const [isExpandedMobile, setIsExpandedMobile] = useState(false)
 
-  function scrollMobile(direction) {
-    if (!mobileTrackRef.current) return
-    mobileTrackRef.current.scrollBy({ left: direction * 280, behavior: 'smooth' })
+  const desktopColumn = `calc((100% - ${(slidesPerViewDesktop - 1) * 16}px) / ${slidesPerViewDesktop})`
+  const mobileInitialCount = Math.min(products.length, Math.max(6, Math.floor(products.length * 0.6)))
+  const mobileProducts = isExpandedMobile ? products : products.slice(0, mobileInitialCount)
+  const canShowMoreMobile = products.length > mobileInitialCount && !isExpandedMobile
+
+  const syncControls = useEffectEvent(() => {
+    const track = trackRef.current
+    if (!track) return
+
+    const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth - 2)
+    setCanPrev(track.scrollLeft > 2)
+    setCanNext(track.scrollLeft < maxScroll)
+  })
+
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+
+    syncControls()
+
+    track.addEventListener('scroll', syncControls, { passive: true })
+    window.addEventListener('resize', syncControls)
+
+    return () => {
+      track.removeEventListener('scroll', syncControls)
+      window.removeEventListener('resize', syncControls)
+    }
+  }, [products.length, slidesPerViewDesktop])
+
+  function move(direction) {
+    const track = trackRef.current
+    if (!track) return
+
+    const firstCard = track.querySelector('[data-carousel-card]')
+    if (!firstCard) return
+
+    const gap = 16
+    const step = firstCard.getBoundingClientRect().width + gap
+    track.scrollBy({ left: direction * step, behavior: 'smooth' })
   }
 
   return (
     <div className={`relative ${className}`}>
-      {page > 0 ? (
-        <button
-          className="absolute left-[-8px] top-[32%] z-10 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-[#2f2a35] text-white shadow-lg md:grid"
-          type="button"
-          onClick={() => setPage((current) => Math.max(0, current - 1))}
-          aria-label="Previous products"
-        >
-          <Icon name="chevronLeft" className="h-5 w-5" />
-        </button>
-      ) : null}
-
-      {page < maxPage ? (
-        <button
-          className="absolute right-[-8px] top-[32%] z-10 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-[#2f2a35] text-white shadow-lg md:grid"
-          type="button"
-          onClick={() => setPage((current) => Math.min(maxPage, current + 1))}
-          aria-label="Next products"
-        >
-          <Icon name="chevronRight" className="h-5 w-5" />
-        </button>
-      ) : null}
-
-      <div className="overflow-hidden">
-        <div ref={mobileTrackRef} className="grid auto-cols-[78%] grid-flow-col gap-4 overflow-x-auto scroll-smooth pb-2 md:hidden">
-          {products.map((product) => (
+      <div className="md:hidden">
+        <div className="grid grid-cols-2 gap-x-3 gap-y-5">
+          {mobileProducts.map((product) => (
             <ProductCard key={product.id} product={product} onSelect={onSelectProduct} />
           ))}
         </div>
 
-        <div className="mt-3 flex items-center justify-end gap-2 md:hidden">
-          <button className="grid h-9 w-9 place-items-center rounded-full bg-[#2f2a35] text-white" type="button" onClick={() => scrollMobile(-1)} aria-label="Previous products">
-            <Icon name="chevronLeft" className="h-4 w-4" />
-          </button>
-          <button className="grid h-9 w-9 place-items-center rounded-full bg-[#2f2a35] text-white" type="button" onClick={() => scrollMobile(1)} aria-label="Next products">
-            <Icon name="chevronRight" className="h-4 w-4" />
-          </button>
-        </div>
+        {canShowMoreMobile ? (
+          <div className="mt-5 flex justify-center">
+            <button
+              className="rounded-full border border-line bg-white px-5 py-2 text-sm font-semibold text-ink"
+              type="button"
+              onClick={() => setIsExpandedMobile(true)}
+            >
+              Show more
+            </button>
+          </div>
+        ) : null}
+      </div>
 
-        <div className="hidden grid-cols-5 gap-4 md:grid">
-          {visible.map((product) => (
-            <ProductCard key={product.id} product={product} onSelect={onSelectProduct} />
+      <div className="relative hidden overflow-hidden md:block md:px-14">
+        <div
+          ref={trackRef}
+          className="hide-scrollbar grid grid-flow-col gap-4 overflow-x-auto scroll-smooth pb-2 snap-x snap-mandatory md:auto-cols-[var(--desktop-col)]"
+          style={{ '--desktop-col': desktopColumn }}
+        >
+          {products.map((product) => (
+            <div key={product.id} data-carousel-card>
+              <ProductCard product={product} onSelect={onSelectProduct} />
+            </div>
           ))}
         </div>
       </div>
+
+      <button
+        className={`absolute left-2 top-[37%] z-10 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-[#2f2a35] text-white shadow-lg md:grid ${canPrev ? 'opacity-100' : 'pointer-events-none opacity-35'}`}
+        type="button"
+        onClick={() => move(-1)}
+        aria-label="Previous products"
+      >
+        <Icon name="chevronLeft" className="h-5 w-5" />
+      </button>
+
+      <button
+        className={`absolute right-2 top-[37%] z-10 hidden h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-[#2f2a35] text-white shadow-lg md:grid ${canNext ? 'opacity-100' : 'pointer-events-none opacity-35'}`}
+        type="button"
+        onClick={() => move(1)}
+        aria-label="Next products"
+      >
+        <Icon name="chevronRight" className="h-5 w-5" />
+      </button>
     </div>
   )
 }

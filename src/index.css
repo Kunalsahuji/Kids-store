@@ -45,11 +45,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   font-family: var(--font-body);
   color: var(--color-ink);
   background: #fffaf5;
@@ -72,11 +74,13 @@ img {
 
 #root {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .page-shell {
   position: relative;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .container-shell {
@@ -104,6 +108,15 @@ img {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .skeleton {
