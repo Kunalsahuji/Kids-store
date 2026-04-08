@@ -1,6 +1,7 @@
 import { brand } from '../../data/brand'
 
 const sizeMap = {
+  nav: { mark: 'h-0 w-0', text: 'text-[21px] sm:text-[22px]', gap: 'gap-0' },
   sm: { mark: 'h-8 w-8', text: 'text-[24px]', gap: 'gap-2' },
   md: { mark: 'h-10 w-10', text: 'text-[32px]', gap: 'gap-2.5' },
   lg: { mark: 'h-12 w-12', text: 'text-[40px]', gap: 'gap-3' },
@@ -19,12 +20,19 @@ export function ToyoveMark({ className = '' }) {
   )
 }
 
-export function BrandLogo({ href = '#home', className = '', size = 'md', withWordmark = true, showSuffix = true }) {
+export function BrandLogo({
+  href = '#home',
+  className = '',
+  size = 'md',
+  withWordmark = true,
+  showMark = true,
+  showSuffix = true,
+}) {
   const config = sizeMap[size] ?? sizeMap.md
 
   return (
-    <a aria-label={brand.name} className={`inline-flex items-center ${config.gap} ${className}`} href={href}>
-      <ToyoveMark className={config.mark} />
+    <a aria-label={brand.name} className={`inline-flex items-center ${showMark ? config.gap : 'gap-0'} ${className}`} href={href}>
+      {showMark ? <ToyoveMark className={config.mark} /> : null}
       {withWordmark ? (
         <span className={`inline-flex items-end gap-1 font-[var(--font-display)] leading-none tracking-[-0.03em] text-[#f1641e] ${config.text}`}>
           <span>{brand.shortName}</span>

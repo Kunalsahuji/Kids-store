@@ -72,7 +72,7 @@ export function Footer() {
             </div>
 
             <div className="mt-8 flex items-center justify-center gap-3">
-              <BrandLogo size="sm" withWordmark={false} />
+              <BrandLogo size="sm" showSuffix={false} />
               <button className="rounded-full bg-[#6b7692] px-5 py-3 text-sm font-semibold text-white" type="button">
                 {brand.appDownloadLabel}
               </button>
@@ -119,7 +119,7 @@ export function Footer() {
             </div>
 
             <div className="mt-10 flex items-center justify-center gap-3">
-              <BrandLogo size="lg" />
+              <BrandLogo size="md" />
               <button className="rounded-full bg-[#6b7692] px-6 py-3 text-[17px] font-semibold text-white" type="button">
                 {brand.appDownloadLabel}
               </button>
@@ -145,7 +145,7 @@ export function Footer() {
 
           <div className="footer-desktop-only items-start gap-8 px-2 py-12">
             <div className="flex basis-[38%] flex-col items-center justify-center">
-              <BrandLogo size="lg" />
+              <BrandLogo size="md" />
               <button className="mt-6 rounded-full bg-[#6b7692] px-6 py-3 text-[17px] font-semibold text-white" type="button">
                 {brand.appDownloadLabel}
               </button>

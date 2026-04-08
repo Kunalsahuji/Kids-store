@@ -27,7 +27,7 @@ export function Navbar({ onOpenMenu }) {
             <button className="grid h-9 w-9 place-items-center rounded-full text-ink" type="button" onClick={onOpenMenu} aria-label="Open menu">
               <Icon name="menu" className="h-5 w-5" />
             </button>
-            <BrandLogo size="sm" className="shrink-0" />
+            <BrandLogo size="nav" showMark={false} showSuffix={false} className="shrink-0" />
             <div className="relative min-w-0 flex-1">
               <input className="h-10 w-full rounded-full border-2 border-[#8a8a8a] bg-[#fffaf5] pl-4 pr-12 text-[14px] text-ink outline-none placeholder:text-[#7a7a7a]" placeholder="Search" type="search" />
               <button className="absolute right-[2px] top-[2px] grid h-9 w-9 place-items-center rounded-full bg-orange text-white" type="button" aria-label="Search">
@@ -46,7 +46,7 @@ export function Navbar({ onOpenMenu }) {
           </div>
 
           <div className="hidden items-center gap-4 md:flex">
-            <BrandLogo size="lg" className="shrink-0" />
+            <BrandLogo size="nav" showMark={false} showSuffix={false} className="shrink-0" />
 
             <button
               className="items-center gap-2 text-[16px] font-semibold text-[#2d2d2d] md:flex"
