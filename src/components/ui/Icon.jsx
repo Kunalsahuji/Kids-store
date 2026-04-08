@@ -8,6 +8,32 @@ const paths = {
       strokeWidth="1.8"
     />
   ),
+  close: (
+    <path
+      d="m6 6 12 12M18 6 6 18"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeWidth="1.8"
+    />
+  ),
+  chevronRight: (
+    <path
+      d="m10 7 5 5-5 5"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.8"
+    />
+  ),
+  gift: (
+    <>
+      <path d="M5 10h14v9H5z" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M12 10v9M5 13h14" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M12 10H8.8A2.4 2.4 0 1 1 11 6.1L12 7m0 3h3.2A2.4 2.4 0 1 0 13 6.1L12 7" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+    </>
+  ),
   search: (
     <>
       <circle cx="10.5" cy="10.5" r="5.5" fill="none" stroke="currentColor" strokeWidth="1.8" />
@@ -92,6 +118,12 @@ const paths = {
     <>
       <path d="M4.8 10.4 12 5l7.2 5.4V19H4.8z" fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.8" />
       <path d="M9.3 19v-5.2h5.4V19" fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.8" />
+    </>
+  ),
+  region: (
+    <>
+      <circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M3.8 12h16.4M12 3.8a13 13 0 0 1 0 16.4M12 3.8a13 13 0 0 0 0 16.4" fill="none" stroke="currentColor" strokeWidth="1.4" />
     </>
   ),
 }

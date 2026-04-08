@@ -1,96 +1,55 @@
-export const heroHighlights = [
-  'Thoughtfully picked wooden toys and learning kits',
-  'Safe finishes, rounded edges, and parent-approved quality',
-  'Fast gifting options with playful packaging',
-]
+export const heroBanner = {
+  title: 'Plan the best birthday ever',
+  cta: 'Explore our guide',
+}
 
-export const categories = [
-  {
-    id: 1,
-    title: 'Wooden Wonders',
-    subtitle: 'Stackers, pull-alongs, and keepsake toys',
-    badge: 'Best Seller',
-    accent: 'bg-[#fff0de]',
-    icon: 'blocks',
-  },
-  {
-    id: 2,
-    title: 'Pretend Play',
-    subtitle: 'Kitchen sets, shops, and role-play favorites',
-    badge: 'Creative',
-    accent: 'bg-[#e9f3ff]',
-    icon: 'store',
-  },
-  {
-    id: 3,
-    title: 'Soft Companions',
-    subtitle: 'Cuddly plush friends for naps and travel',
-    badge: 'New',
-    accent: 'bg-[#fbe8ef]',
-    icon: 'bear',
-  },
-  {
-    id: 4,
-    title: 'Brainy Play',
-    subtitle: 'Puzzles, memory games, and STEM picks',
-    badge: 'Learning',
-    accent: 'bg-[#eef8ef]',
-    icon: 'rocket',
-  },
+export const featuredStory = {
+  title: 'Children’s Store Themes',
+  linkLabel: 'View all',
+  subtitle: 'Curated based on your views',
+}
+
+export const categoryChips = [
+  'Montessori toys',
+  'Kids clothes',
+  'Birthday decor',
+  'Nursery art',
+  'Pretend play',
+  'Baby gifts',
 ]
 
 export const featuredProducts = [
-  { id: 1, name: 'Sunny Activity House', price: '$48.00', tag: 'Featured', tint: 'from-[#ffe2b8] to-[#fff8ec]', rating: '4.9' },
-  { id: 2, name: 'Mini Market Cart', price: '$62.00', tag: 'Top Rated', tint: 'from-[#dcedff] to-[#f7fbff]', rating: '4.8' },
-  { id: 3, name: 'Cloud Plush Duo', price: '$35.00', tag: 'Soft Play', tint: 'from-[#ffe4ea] to-[#fff8fb]', rating: '4.9' },
-  { id: 4, name: 'Alphabet Train Set', price: '$54.00', tag: 'New Arrival', tint: 'from-[#dff4e8] to-[#f9fdfb]', rating: '5.0' },
+  { id: 1, name: 'Kids Toys Shopify Theme', price: '₹ 5,058', originalPrice: '₹ 14,462', discount: '65% off', tint: 'from-[#bff6f1] to-[#f4ffff]', rating: '4.9' },
+  { id: 2, name: 'Soft Nursery Store Design', price: '₹ 1,790', originalPrice: '₹ 5,967', discount: '70% off', tint: 'from-[#f2ede7] to-[#fcfbf9]', rating: '4.8' },
+  { id: 3, name: 'Toys Made With Love Template', price: '₹ 1,367', originalPrice: '₹ 4,558', discount: '70% off', tint: 'from-[#def1ff] to-[#f7fbff]', rating: '4.9' },
+  { id: 4, name: 'Playful Toy Clothing Store', price: '₹ 1,367', originalPrice: '₹ 4,558', discount: '70% off', tint: 'from-[#e4f7ff] to-[#fbfeff]', rating: '4.7' },
 ]
 
-export const newArrivals = [
-  { id: 1, name: 'Rainbow Balance Board', price: '$44.00', tint: 'from-[#fff1cd] to-[#fffaf0]' },
-  { id: 2, name: 'Little Builder Toolbox', price: '$39.00', tint: 'from-[#dcecff] to-[#f8fbff]' },
-  { id: 3, name: 'Dreamland Bunny', price: '$28.00', tint: 'from-[#ffe6ee] to-[#fff8fb]' },
+export const exploreProducts = [
+  { id: 5, name: 'Googly Eyes Craft Pack', price: '₹ 280', originalPrice: null, discount: null, tint: 'from-[#f2f2f2] to-[#fbfbfb]', rating: '4.8' },
+  { id: 6, name: 'Bunny Glitter Clip Art', price: '₹ 495', originalPrice: null, discount: null, tint: 'from-[#e8dfdd] to-[#f7f3f2]', rating: '4.8' },
+  { id: 7, name: 'Safety Eyes Set', price: '₹ 310', originalPrice: null, discount: null, tint: 'from-[#ded9d0] to-[#f8f7f4]', rating: '4.9' },
+  { id: 8, name: 'Silver Baby Bracelet', price: '₹ 1,150', originalPrice: null, discount: null, tint: 'from-[#eceef4] to-[#fbfcfd]', rating: '4.7' },
 ]
 
-export const promoPanels = [
-  {
-    id: 1,
-    eyebrow: 'Playroom Picks',
-    title: 'Create a soft, story-led corner for curious minds',
-    body: 'Layer shelves, tactile toys, and gentle colors that feel premium but still playful.',
-    tone: 'bg-[#fdf0df]',
-  },
-  {
-    id: 2,
-    eyebrow: 'Gift Ready',
-    title: 'Birthday bundles with timeless toys and charming cards',
-    body: 'Curated sets for toddlers and young kids, wrapped in warm colors and clean presentation.',
-    tone: 'bg-[#e8f3ff]',
-  },
+export const topGiftProducts = [
+  { id: 9, name: 'Personalised Toy Basket', price: '₹ 1,293', originalPrice: '₹ 1,848', discount: null, tint: 'from-[#f1d8de] to-[#fff7f9]', rating: '4.9' },
+  { id: 10, name: 'Crochet Birthday Bouquet', price: '₹ 3,030', originalPrice: null, discount: null, tint: 'from-[#f6eee4] to-[#fdfbf8]', rating: '4.8' },
+  { id: 11, name: 'Family Portrait Nursery Print', price: '₹ 3,928', originalPrice: null, discount: null, tint: 'from-[#efe4dd] to-[#faf6f4]', rating: '4.9' },
+  { id: 12, name: 'Clay Trinket Plate', price: '₹ 1,122', originalPrice: null, discount: null, tint: 'from-[#f8ecd8] to-[#fffaf1]', rating: '4.8' },
 ]
 
-export const trustPoints = [
-  'Natural textures and child-safe finishes',
-  'Responsive shopping flow across every device',
-  'Wishlist, quick actions, and polished product discovery',
-  'Clean Shopify-inspired section rhythm for conversions',
-]
-
-export const testimonials = [
-  {
-    id: 1,
-    quote: 'The whole storefront feels cheerful and premium, exactly what a children’s brand should communicate.',
-    author: 'Aarohi, parent shopper',
-  },
-  {
-    id: 2,
-    quote: 'The layout makes browsing toys really easy on mobile, and the product cards feel clear without being cluttered.',
-    author: 'Nisha, gift buyer',
-  },
+export const taxons = [
+  { id: 1, label: 'Toys', tone: 'bg-[#f8e6c9]' },
+  { id: 2, label: 'Clothing', tone: 'bg-[#e8eef9]' },
+  { id: 3, label: 'Party & gifting', tone: 'bg-[#f7e8ec]' },
+  { id: 4, label: 'Nursery', tone: 'bg-[#eaf4e7]' },
+  { id: 5, label: 'Books', tone: 'bg-[#efe6f6]' },
+  { id: 6, label: 'Bags & storage', tone: 'bg-[#f3efe4]' },
 ]
 
 export const footerColumns = [
-  { title: 'Shop', links: ['Wooden Toys', 'Pretend Play', 'Nursery Decor', 'Gift Sets'] },
-  { title: 'Support', links: ['Shipping', 'Returns', 'FAQs', 'Contact'] },
-  { title: 'About', links: ['Our Story', 'Safety Promise', 'Journal', 'Wholesale'] },
+  { title: 'Shop', links: ['Toys', 'Clothing', 'Nursery', 'Birthday'] },
+  { title: 'Sell', links: ['Start selling', 'Seller handbook', 'Teams', 'Affiliates'] },
+  { title: 'About', links: ['Company', 'Careers', 'Press', 'Investors'] },
 ]

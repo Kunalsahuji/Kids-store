@@ -1,47 +1,52 @@
+import { useEffect, useState } from 'react'
 import { Icon } from './Icon'
 
-export function ProductCard({ product, compact = false }) {
+export function ProductCard({ product }) {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setIsLoaded(true), 250 + (product.id % 4) * 120)
+    return () => window.clearTimeout(timeoutId)
+  }, [product.id])
+
+  if (!isLoaded) {
+    return (
+      <article className="space-y-3">
+        <div className="skeleton aspect-[0.95] w-full rounded-xl" />
+        <div className="skeleton h-4 w-5/6 rounded-md" />
+        <div className="skeleton h-4 w-2/3 rounded-md" />
+        <div className="skeleton h-5 w-1/2 rounded-md" />
+      </article>
+    )
+  }
+
   return (
-    <article className="card-panel group overflow-hidden p-4 transition-transform duration-300 hover:-translate-y-1">
-      <div className={`relative rounded-[24px] bg-gradient-to-br ${product.tint} p-4 ${compact ? 'h-52' : 'h-64'}`}>
-        <div className="absolute left-4 top-4 rounded-full bg-[rgba(255,255,255,0.9)] px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-blue">
-          {product.tag ?? 'Fresh Pick'}
-        </div>
-        <button
-          className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-[rgba(255,255,255,0.9)] text-ink transition-colors hover:text-orange"
-          type="button"
-          aria-label={`Add ${product.name} to wishlist`}
-        >
+    <article className="group">
+      <div className={`relative aspect-[0.95] overflow-hidden rounded-xl bg-gradient-to-br ${product.tint}`}>
+        <button className="absolute right-3 top-3 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-ink shadow-sm" type="button" aria-label={`Save ${product.name}`}>
           <Icon name="heart" className="h-4 w-4" />
         </button>
-        <div className="flex h-full items-center justify-center">
-          <div className="relative h-32 w-32 rounded-[32px] bg-[rgba(255,255,255,0.8)] shadow-[inset_0_0_0_1px_rgba(69,97,127,0.08)]">
-            <div className="absolute inset-x-5 top-7 h-12 rounded-[18px] bg-[rgba(244,157,55,0.8)]" />
-            <div className="absolute inset-x-8 top-14 h-10 rounded-[16px] bg-[rgba(79,136,198,0.8)]" />
-            <div className="absolute bottom-5 left-7 h-6 w-6 rounded-full bg-coral" />
-            <div className="absolute bottom-5 right-7 h-6 w-6 rounded-full bg-mint" />
+        <div className="flex h-full items-center justify-center p-5">
+          <div className="relative h-[78%] w-[78%] rounded-lg bg-white/70 shadow-sm">
+            <div className="absolute inset-x-[12%] top-[12%] h-[24%] rounded-md bg-white/90" />
+            <div className="absolute inset-x-[10%] top-[39%] h-[36%] rounded-md bg-[rgba(255,255,255,0.78)]" />
+            <div className="absolute left-[18%] top-[46%] h-10 w-10 rounded-full bg-[rgba(241,100,30,0.28)]" />
+            <div className="absolute right-[18%] top-[46%] h-10 w-10 rounded-full bg-[rgba(140,176,222,0.38)]" />
+            <div className="absolute bottom-[12%] left-[12%] h-[10%] w-[76%] rounded-md bg-white/90" />
           </div>
         </div>
       </div>
-      <div className="px-2 pb-2 pt-5">
-        <div className="mb-2 flex items-center justify-between gap-4">
-          <h3 className="font-[var(--font-display)] text-xl text-ink">{product.name}</h3>
-          <div className="flex items-center gap-1 text-sm font-bold text-orange">
-            <Icon name="star" className="h-4 w-4" />
-            <span>{product.rating ?? '4.8'}</span>
-          </div>
+
+      <div className="pt-2">
+        <h3 className="line-clamp-2 text-[15px] leading-5 text-ink">{product.name}</h3>
+        <div className="mt-1 flex items-center gap-1 text-[13px] text-ink">
+          <span>{product.rating}</span>
+          <Icon name="star" className="h-3.5 w-3.5 text-ink" />
         </div>
-        <div className="mb-4 flex items-center justify-between text-sm text-muted">
-          <span>Hand-finished toy</span>
-          <span className="font-extrabold text-blue">{product.price}</span>
-        </div>
-        <div className="flex gap-3">
-          <button className="flex-1 rounded-full bg-blue px-4 py-3 text-sm font-extrabold text-white transition-colors hover:bg-blue-deep" type="button">
-            Add to Cart
-          </button>
-          <button className="rounded-full border border-line px-4 py-3 text-sm font-bold text-ink transition-colors hover:border-orange hover:text-orange" type="button">
-            Quick View
-          </button>
+        <div className="mt-1 flex flex-wrap items-center gap-1 text-[13px]">
+          <span className="font-semibold text-[#258635]">{product.price}</span>
+          {product.originalPrice ? <span className="text-muted line-through">{product.originalPrice}</span> : null}
+          {product.discount ? <span className="font-medium text-muted">({product.discount})</span> : null}
         </div>
       </div>
     </article>
