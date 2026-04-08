@@ -1,12 +1,12 @@
 import { featuredProducts } from '../../data/storefront'
-import { ProductCard } from '../ui/ProductCard'
+import { ProductCarousel } from '../ui/ProductCarousel'
 
-export function FeaturedSection() {
+export function FeaturedSection({ onSelectProduct }) {
   return (
-    <section id="featured" className="section-pad">
+    <section id="featured" className="section-pad pt-3">
       <div className="container-shell">
-        <div className="grid gap-5 lg:grid-cols-[240px_1fr]">
-          <div className="rounded-xl bg-white p-6 text-center shadow-[inset_0_0_0_1px_rgba(34,34,34,0.08)]">
+        <div className="grid gap-5 lg:grid-cols-[320px_1fr]">
+          <div className="rounded-xl bg-white p-8 text-center shadow-[inset_0_0_0_1px_rgba(34,34,34,0.08)]">
             <h2 className="font-[var(--font-display)] text-[40px] leading-[0.95] text-[#2c2c2c]">“Children&apos;s Store Themes”</h2>
             <a className="mt-2 block text-[28px] font-medium text-ink" href="#collections">
               View all
@@ -16,12 +16,8 @@ export function FeaturedSection() {
           </div>
 
           <div>
-            <h2 className="mb-4 font-[var(--font-display)] text-[28px] text-ink md:text-[34px]">Take a break - browse your picks</h2>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-6 lg:grid-cols-4">
-              {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <h2 className="mb-6 font-[var(--font-display)] text-[30px] leading-none text-ink md:text-[44px]">Start with your picks</h2>
+            <ProductCarousel products={featuredProducts} onSelectProduct={onSelectProduct} />
           </div>
         </div>
       </div>

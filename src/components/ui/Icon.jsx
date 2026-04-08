@@ -27,6 +27,16 @@ const paths = {
       strokeWidth="1.8"
     />
   ),
+  chevronLeft: (
+    <path
+      d="m14 7-5 5 5 5"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.8"
+    />
+  ),
   gift: (
     <>
       <path d="M5 10h14v9H5z" fill="none" stroke="currentColor" strokeWidth="1.8" />
@@ -52,13 +62,15 @@ const paths = {
   bag: (
     <>
       <path
-        d="M6.3 9.2h11.4l-1 9.5a1.5 1.5 0 0 1-1.5 1.3H8.8a1.5 1.5 0 0 1-1.5-1.3l-1-9.5Z"
+        d="M4.5 6.8h2.3l1.6 8h8.2l2-5.9H8.4"
         fill="none"
         stroke="currentColor"
+        strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.8"
       />
-      <path d="M8.7 9.2a3.3 3.3 0 0 1 6.6 0" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
+      <circle cx="10.3" cy="18.2" r="1.2" fill="currentColor" />
+      <circle cx="16.4" cy="18.2" r="1.2" fill="currentColor" />
     </>
   ),
   user: (
@@ -124,6 +136,25 @@ const paths = {
     <>
       <circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
       <path d="M3.8 12h16.4M12 3.8a13 13 0 0 1 0 16.4M12 3.8a13 13 0 0 0 0 16.4" fill="none" stroke="currentColor" strokeWidth="1.4" />
+    </>
+  ),
+  instagram: (
+    <>
+      <rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="16.5" cy="7.5" r="0.9" fill="currentColor" />
+    </>
+  ),
+  facebook: (
+    <path d="M13.2 19v-6.1h2.1l.5-2.7h-2.6V8.7c0-.8.3-1.4 1.5-1.4H16V5c-.5-.1-1.1-.2-1.9-.2-2 0-3.3 1.2-3.3 3.5v1.9H8.5v2.7h2.3V19h2.4Z" fill="currentColor" />
+  ),
+  pinterest: (
+    <path d="M12 4.8c-3.7 0-5.6 2.7-5.6 5 0 1.4.5 2.7 1.7 3.2.2.1.3 0 .4-.2l.3-1.1c.1-.2 0-.3-.1-.5-.3-.4-.5-1-.5-1.8 0-2.3 1.7-4.4 4.6-4.4 2.5 0 3.9 1.5 3.9 3.6 0 2.7-1.2 5-2.9 5-.9 0-1.6-.7-1.3-1.7.2-1.2.8-2.4.8-3.2 0-.7-.4-1.4-1.2-1.4-1 0-1.8 1-1.8 2.5 0 .9.3 1.5.3 1.5l-1.2 5c-.3 1.2 0 2.6 0 2.7 0 .1.1.1.2.1.1 0 1-.9 1.4-1.8.1-.3.7-2.7.7-2.7.4.8 1.4 1.4 2.5 1.4 3.3 0 5.5-3 5.5-7 0-2.9-2.5-5.5-6.2-5.5Z" fill="currentColor" />
+  ),
+  youtube: (
+    <>
+      <path d="M19.5 8.2c-.2-.9-.9-1.6-1.8-1.8C16.1 6 12 6 12 6s-4.1 0-5.7.4c-.9.2-1.6.9-1.8 1.8C4 9.8 4 12 4 12s0 2.2.5 3.8c.2.9.9 1.6 1.8 1.8C7.9 18 12 18 12 18s4.1 0 5.7-.4c.9-.2 1.6-.9 1.8-1.8.5-1.6.5-3.8.5-3.8s0-2.2-.5-3.8Z" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <path d="m10.3 14.3 4.4-2.3-4.4-2.3v4.6Z" fill="currentColor" />
     </>
   ),
 }

@@ -1,12 +1,47 @@
+const buildMedia = (palette) => [
+  { id: 1, palette, accent: 'circle', label: 'Preview 1' },
+  { id: 2, palette, accent: 'panel', label: 'Preview 2' },
+  { id: 3, palette, accent: 'stack', label: 'Preview 3' },
+  { id: 4, palette, accent: 'dots', label: 'Preview 4' },
+  { id: 5, palette, accent: 'panel', label: 'Preview 5' },
+]
+
+const createProduct = ({
+  id,
+  name,
+  price,
+  originalPrice,
+  discount,
+  rating,
+  tint,
+  palette,
+  seller,
+  stockNote,
+  summary,
+  section,
+}) => ({
+  id,
+  name,
+  price,
+  originalPrice,
+  discount,
+  rating,
+  tint,
+  palette,
+  seller,
+  stockNote,
+  summary,
+  section,
+  media: buildMedia(palette),
+  badges: ['Instant download', 'Responsive layout', 'Editable sections'],
+  delivery: 'Digital download',
+  description:
+    'A polished children store website layout inspired by marketplace browsing. Includes responsive homepage sections, category browsing, mobile-first detail flow, and polished commerce visuals for toys, clothing, nursery, and gifting stores.',
+})
+
 export const heroBanner = {
   title: 'Plan the best birthday ever',
   cta: 'Explore our guide',
-}
-
-export const featuredStory = {
-  title: 'Children’s Store Themes',
-  linkLabel: 'View all',
-  subtitle: 'Curated based on your views',
 }
 
 export const categoryChips = [
@@ -18,27 +53,6 @@ export const categoryChips = [
   'Baby gifts',
 ]
 
-export const featuredProducts = [
-  { id: 1, name: 'Kids Toys Shopify Theme', price: '₹ 5,058', originalPrice: '₹ 14,462', discount: '65% off', tint: 'from-[#bff6f1] to-[#f4ffff]', rating: '4.9' },
-  { id: 2, name: 'Soft Nursery Store Design', price: '₹ 1,790', originalPrice: '₹ 5,967', discount: '70% off', tint: 'from-[#f2ede7] to-[#fcfbf9]', rating: '4.8' },
-  { id: 3, name: 'Toys Made With Love Template', price: '₹ 1,367', originalPrice: '₹ 4,558', discount: '70% off', tint: 'from-[#def1ff] to-[#f7fbff]', rating: '4.9' },
-  { id: 4, name: 'Playful Toy Clothing Store', price: '₹ 1,367', originalPrice: '₹ 4,558', discount: '70% off', tint: 'from-[#e4f7ff] to-[#fbfeff]', rating: '4.7' },
-]
-
-export const exploreProducts = [
-  { id: 5, name: 'Googly Eyes Craft Pack', price: '₹ 280', originalPrice: null, discount: null, tint: 'from-[#f2f2f2] to-[#fbfbfb]', rating: '4.8' },
-  { id: 6, name: 'Bunny Glitter Clip Art', price: '₹ 495', originalPrice: null, discount: null, tint: 'from-[#e8dfdd] to-[#f7f3f2]', rating: '4.8' },
-  { id: 7, name: 'Safety Eyes Set', price: '₹ 310', originalPrice: null, discount: null, tint: 'from-[#ded9d0] to-[#f8f7f4]', rating: '4.9' },
-  { id: 8, name: 'Silver Baby Bracelet', price: '₹ 1,150', originalPrice: null, discount: null, tint: 'from-[#eceef4] to-[#fbfcfd]', rating: '4.7' },
-]
-
-export const topGiftProducts = [
-  { id: 9, name: 'Personalised Toy Basket', price: '₹ 1,293', originalPrice: '₹ 1,848', discount: null, tint: 'from-[#f1d8de] to-[#fff7f9]', rating: '4.9' },
-  { id: 10, name: 'Crochet Birthday Bouquet', price: '₹ 3,030', originalPrice: null, discount: null, tint: 'from-[#f6eee4] to-[#fdfbf8]', rating: '4.8' },
-  { id: 11, name: 'Family Portrait Nursery Print', price: '₹ 3,928', originalPrice: null, discount: null, tint: 'from-[#efe4dd] to-[#faf6f4]', rating: '4.9' },
-  { id: 12, name: 'Clay Trinket Plate', price: '₹ 1,122', originalPrice: null, discount: null, tint: 'from-[#f8ecd8] to-[#fffaf1]', rating: '4.8' },
-]
-
 export const taxons = [
   { id: 1, label: 'Toys', tone: 'bg-[#f8e6c9]' },
   { id: 2, label: 'Clothing', tone: 'bg-[#e8eef9]' },
@@ -47,6 +61,248 @@ export const taxons = [
   { id: 5, label: 'Books', tone: 'bg-[#efe6f6]' },
   { id: 6, label: 'Bags & storage', tone: 'bg-[#f3efe4]' },
 ]
+
+export const allProducts = [
+  createProduct({
+    id: 1,
+    name: 'Kids Toys Shopify Theme - Responsive Baby Store Website Template',
+    price: '₹ 1,381',
+    originalPrice: '₹ 4,602',
+    discount: '70% off',
+    rating: '4.9',
+    tint: 'from-[#cbeefe] to-[#f7fcff]',
+    palette: ['#8fd7ff', '#ffdb72', '#f26f5e'],
+    seller: 'Shopeeez',
+    stockNote: 'Low in stock, only 2 left',
+    summary: 'Best-selling toy store homepage with playful hero blocks and category icons.',
+    section: 'featured',
+  }),
+  createProduct({
+    id: 2,
+    name: 'Impact Shopify Theme v7.0.1 - Premium Kids Commerce Layout',
+    price: '₹ 1,611',
+    originalPrice: '₹ 5,369',
+    discount: '70% off',
+    rating: '4.8',
+    tint: 'from-[#c7dbc2] to-[#f6fbf4]',
+    palette: ['#6e8c67', '#cfe0cf', '#25352b'],
+    seller: 'Impact Studio',
+    stockNote: 'Popular in toy themes',
+    summary: 'Minimal product-first storefront suited for toys, nursery gifts, and fashion.',
+    section: 'featured',
+  }),
+  createProduct({
+    id: 3,
+    name: 'Shopify Baby Template - Minimalist Storefront for Nursery Shops',
+    price: '₹ 1,802',
+    originalPrice: '₹ 6,007',
+    discount: '70% off',
+    rating: '4.9',
+    tint: 'from-[#edf0f4] to-[#fefefe]',
+    palette: ['#c7d3de', '#f0e4d3', '#8ea9c1'],
+    seller: 'MimiMoi',
+    stockNote: 'Best match for nursery stores',
+    summary: 'Neutral visual direction with cozy product modules and soft product story panels.',
+    section: 'featured',
+  }),
+  createProduct({
+    id: 4,
+    name: 'Shopify Baby Template - Minimalist Toy & Clothing Website',
+    price: '₹ 1,802',
+    originalPrice: '₹ 6,007',
+    discount: '70% off',
+    rating: '4.8',
+    tint: 'from-[#f6efe8] to-[#fffcf9]',
+    palette: ['#e5d1be', '#f8f2ea', '#b28870'],
+    seller: 'MimiMoi',
+    stockNote: 'Few left',
+    summary: 'Home, category, and mobile-first detail layout for baby clothing and toys.',
+    section: 'featured',
+  }),
+  createProduct({
+    id: 5,
+    name: 'Momo Belle Shopify Theme - Baby & Clothing Store',
+    price: '₹ 5,596',
+    originalPrice: null,
+    discount: null,
+    rating: '4.7',
+    tint: 'from-[#f1ebde] to-[#fffdf9]',
+    palette: ['#f5c990', '#fee8cf', '#87b9a5'],
+    seller: 'Momo Belle',
+    stockNote: 'Instant download',
+    summary: 'Warm child-fashion storefront with banners, product blocks, and editorial cards.',
+    section: 'featured',
+  }),
+  createProduct({
+    id: 6,
+    name: 'Colorful Shopify Kids Fashion Store Theme',
+    price: '₹ 2,854',
+    originalPrice: null,
+    discount: null,
+    rating: '4.6',
+    tint: 'from-[#f8e3de] to-[#fff9f8]',
+    palette: ['#f6b0a5', '#f9e3b8', '#9ac8ec'],
+    seller: 'ColorNest',
+    stockNote: 'New arrival',
+    summary: 'Bright merchandising layout for kids fashion, toys, and event collections.',
+    section: 'featured',
+  }),
+  createProduct({
+    id: 7,
+    name: 'Lavender Bloom Nursery Print Set',
+    price: '₹ 390',
+    originalPrice: null,
+    discount: null,
+    rating: '5.0',
+    tint: 'from-[#d9caf0] to-[#faf6ff]',
+    palette: ['#8d74ba', '#f0e8ff', '#a689d7'],
+    seller: 'Petal Prints',
+    stockNote: 'Bestseller',
+    summary: 'Soft floral artwork for nursery walls and gift-ready room decor.',
+    section: 'explore',
+  }),
+  createProduct({
+    id: 8,
+    name: 'Peach Garden Party Bouquet',
+    price: '₹ 720',
+    originalPrice: null,
+    discount: null,
+    rating: '4.9',
+    tint: 'from-[#ffe4e6] to-[#fffaf9]',
+    palette: ['#ef9da6', '#ffd3d8', '#9dcb6c'],
+    seller: 'Blossom Lane',
+    stockNote: 'Made to order',
+    summary: 'Event-ready floral bundle with pastel styling for birthday corners and photography.',
+    section: 'explore',
+  }),
+  createProduct({
+    id: 9,
+    name: 'Purple Meadow Keepsake Poster',
+    price: '₹ 499',
+    originalPrice: null,
+    discount: null,
+    rating: '4.8',
+    tint: 'from-[#d8d4ef] to-[#fbfbff]',
+    palette: ['#6f6bc6', '#9f95db', '#f6f0ff'],
+    seller: 'Tiny Keepsakes',
+    stockNote: 'Trending gift',
+    summary: 'Decor-led collectible poster for nursery corners and birthday gifting.',
+    section: 'explore',
+  }),
+  createProduct({
+    id: 10,
+    name: 'Merry Petals Flower Collection',
+    price: '₹ 550',
+    originalPrice: null,
+    discount: null,
+    rating: '4.7',
+    tint: 'from-[#f5dde5] to-[#fff9fb]',
+    palette: ['#e25e87', '#f5bbc8', '#ffffff'],
+    seller: 'Bloom Box',
+    stockNote: 'Popular choice',
+    summary: 'A vibrant mixed floral board used as a decorative inspiration card for curated edits.',
+    section: 'explore',
+  }),
+  createProduct({
+    id: 11,
+    name: 'Hop Costume Mask & Cape Set',
+    price: '₹ 1,240',
+    originalPrice: null,
+    discount: null,
+    rating: '4.8',
+    tint: 'from-[#f3f0d9] to-[#fffef7]',
+    palette: ['#e0cd6f', '#7bb4d3', '#f7f7f7'],
+    seller: 'Costume Club',
+    stockNote: 'Gift ready',
+    summary: 'Pretend play costume kit suitable for party gifting and imaginative dress-up.',
+    section: 'more',
+  }),
+  createProduct({
+    id: 12,
+    name: 'Birthday Badge Button Pack',
+    price: '₹ 880',
+    originalPrice: null,
+    discount: null,
+    rating: '4.9',
+    tint: 'from-[#ece7df] to-[#fcfbf9]',
+    palette: ['#222222', '#f7d04a', '#f19d9d'],
+    seller: 'Badge Lab',
+    stockNote: 'Fast dispatch',
+    summary: 'Party accessory add-on for birthday outfits and themed return gifts.',
+    section: 'more',
+  }),
+  createProduct({
+    id: 13,
+    name: 'Pixel Party Craft Invitation Kit',
+    price: '₹ 420',
+    originalPrice: null,
+    discount: null,
+    rating: '4.7',
+    tint: 'from-[#f6d2db] to-[#fff8fb]',
+    palette: ['#ff5b85', '#6dd3f5', '#ffd95d'],
+    seller: 'Party Pixel',
+    stockNote: 'Top gift',
+    summary: 'Printable invite and decor bundle for birthdays and classroom celebrations.',
+    section: 'more',
+  }),
+  createProduct({
+    id: 14,
+    name: 'Playroom Hoop Wall Decor',
+    price: '₹ 350',
+    originalPrice: null,
+    discount: null,
+    rating: '4.6',
+    tint: 'from-[#efe4d8] to-[#fefaf7]',
+    palette: ['#d2b48c', '#b6885e', '#fff2db'],
+    seller: 'Loop & Hang',
+    stockNote: 'Handmade',
+    summary: 'Neutral accessory suitable for room styling modules and decorative carousel sections.',
+    section: 'more',
+  }),
+  createProduct({
+    id: 15,
+    name: 'Rainbow Disc Toy Spinner',
+    price: '₹ 650',
+    originalPrice: null,
+    discount: null,
+    rating: '4.8',
+    tint: 'from-[#e3e7f7] to-[#fbfcff]',
+    palette: ['#8f8cff', '#f2b8d8', '#8fd1f9'],
+    seller: 'SpinUp',
+    stockNote: 'Trending now',
+    summary: 'A colorful toy accessory used to create motion-focused product listings and bundles.',
+    section: 'more',
+  }),
+]
+
+export const featuredProducts = allProducts.filter((item) => item.section === 'featured')
+export const exploreProducts = allProducts.filter((item) => item.section === 'explore')
+export const topGiftProducts = allProducts.filter((item) => item.section === 'more')
+
+export const promoMosaic = [
+  {
+    id: 'promo-main',
+    title: 'Plan the best birthday ever',
+    cta: 'Explore our guide',
+    tone: 'bg-[#d7e3f4]',
+  },
+  {
+    id: 'promo-cake',
+    title: 'Find cake toppers, return gifts, and setup ideas',
+    tone: 'bg-[#f2e4cb]',
+  },
+  {
+    id: 'promo-floral',
+    title: 'Discover the next wave of floral sellers',
+    tone: 'bg-[#c3d1c6]',
+  },
+]
+
+export const detailRecommendations = allProducts.slice(1, 5)
+
+export function getProductById(id) {
+  return allProducts.find((item) => item.id === Number(id))
+}
 
 export const footerColumns = [
   { title: 'Shop', links: ['Toys', 'Clothing', 'Nursery', 'Birthday'] },
