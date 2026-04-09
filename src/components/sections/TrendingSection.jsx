@@ -1,12 +1,27 @@
 import { trendingProducts } from '../../data/storefront'
-import { ProductCarousel } from '../ui/ProductCarousel'
+import { ProductCard } from '../ui/ProductCard'
 
 export function TrendingSection({ onSelectProduct }) {
+  // Take exactly 6 for the Etsy grid layout
+  const displayProducts = trendingProducts.slice(0, 6)
+
   return (
-    <section id="trending" className="section-pad pt-1">
-      <div className="container-shell">
-        <h2 className="mb-4 font-[var(--font-display)] text-[28px] text-ink md:text-[34px]">Trending picks for toy stores</h2>
-        <ProductCarousel products={trendingProducts} onSelectProduct={onSelectProduct} />
+    <section className="container-shell pt-4 pb-2 px-3">
+      {/* Exact Etsy Heading (Sans-serif) */}
+      <h2 className="text-[17px] md:text-[22px] font-bold text-ink mb-4">
+        Recently viewed
+      </h2>
+
+      {/* Dense 2x3 Grid (6 Cards shown total) */}
+      <div className="grid grid-cols-2 gap-x-3 gap-y-6 md:grid-cols-3 lg:grid-cols-6">
+        {displayProducts.map((product) => (
+          <ProductCard 
+            key={product.id} 
+            product={product} 
+            onSelect={onSelectProduct} 
+            showTitle={false}
+          />
+        ))}
       </div>
     </section>
   )

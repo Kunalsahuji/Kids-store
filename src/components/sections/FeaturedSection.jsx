@@ -1,27 +1,32 @@
 import { featuredProducts } from '../../data/storefront'
-import { ProductCarousel } from '../ui/ProductCarousel'
+import { ProductCard } from '../ui/ProductCard'
 
 export function FeaturedSection({ onSelectProduct }) {
-  return (
-    <section id="featured" className="section-pad pt-3">
-      <div className="container-shell">
-        <div className="grid gap-5 lg:grid-cols-[320px_1fr]">
-          <div className="rounded-xl bg-white p-8 text-center shadow-[inset_0_0_0_1px_rgba(34,34,34,0.08)]">
-            <h2 className="font-[var(--font-display)] text-[40px] leading-[0.95] text-[#2c2c2c]">“Children&apos;s Store Themes”</h2>
-            <a className="mt-2 block text-[28px] font-medium text-ink" href="#collections">
-              View all
-            </a>
-            <p className="mt-2 text-sm text-muted">Curated based on your views</p>
-            <div className="mx-auto mt-4 h-20 w-16 overflow-hidden rounded-lg shadow-sm">
-              <img className="h-full w-full object-cover" src={featuredProducts[0].imageUrl} alt="Children store themes" loading="lazy" />
-            </div>
-          </div>
+  // Take exactly 6 for a dense Etsy mobile grid (2x3)
+  const displayProducts = featuredProducts.slice(0, 6)
 
-          <div>
-            <h2 className="mb-6 font-[var(--font-display)] text-[30px] leading-none text-ink md:text-[44px]">Start with your picks</h2>
-            <ProductCarousel products={featuredProducts} onSelectProduct={onSelectProduct} />
-          </div>
-        </div>
+  return (
+    <section className="container-shell py-8 px-3">
+      {/* Exact Header for Picks Section (Screenshot 1 & 3 Match) */}
+      <div className="flex items-end justify-between mb-5">
+        <h2 className="text-[18px] md:text-[22px] font-bold text-ink">
+          Our picks for you
+        </h2>
+        <a href="#" className="text-[13px] md:text-[15px] font-bold underline underline-offset-4 decoration-black/20 hover:decoration-black">
+          See more
+        </a>
+      </div>
+
+      {/* Dense 2x3 Grid (6 Cards shown total) */}
+      <div className="grid grid-cols-2 gap-x-3 gap-y-6 md:grid-cols-3 lg:grid-cols-6">
+        {displayProducts.map((product) => (
+          <ProductCard 
+            key={product.id} 
+            product={product} 
+            onSelect={onSelectProduct} 
+            showTitle={false}
+          />
+        ))}
       </div>
     </section>
   )

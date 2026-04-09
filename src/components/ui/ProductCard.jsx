@@ -1,49 +1,64 @@
-import { useEffect, useState } from 'react'
 import { Icon } from './Icon'
-import { ProductVisual } from './ProductVisual'
 
-export function ProductCard({ product, onSelect }) {
-  const [isLoaded, setIsLoaded] = useState(false)
-
-  useEffect(() => {
-    const timeoutId = window.setTimeout(() => setIsLoaded(true), 250 + (product.id % 4) * 120)
-    return () => window.clearTimeout(timeoutId)
-  }, [product.id])
-
-  if (!isLoaded) {
-    return (
-      <article className="space-y-3">
-        <div className="skeleton aspect-[0.95] w-full rounded-xl" />
-        <div className="skeleton h-4 w-5/6 rounded-md" />
-        <div className="skeleton h-4 w-2/3 rounded-md" />
-        <div className="skeleton h-5 w-1/2 rounded-md" />
-      </article>
-    )
-  }
+export function ProductCard({ product, onSelect, showTitle = true }) {
+  if (!product) return null
 
   return (
-    <article className="group snap-start">
-      <button className="w-full text-left" type="button" onClick={() => onSelect?.(product.id)} aria-label={product.name}>
-        <div className="relative">
-          <ProductVisual product={product} />
-          <span className="absolute right-3 top-3 z-10 grid h-10 w-10 place-items-center rounded-full bg-white text-ink shadow-sm">
-            <Icon name="heart" className="h-4 w-4" />
-          </span>
-        </div>
-      </button>
-
-      <div className="pt-2">
-        <button className="text-left" type="button" onClick={() => onSelect?.(product.id)}>
-          <h3 className="line-clamp-2 text-[15px] leading-5 text-ink">{product.name}</h3>
+    <article className="group cursor-pointer select-none" onClick={() => onSelect?.(product.id)}>
+      {/* 1. Image with Top-Right Wishlist */}
+      <div className="relative aspect-[4/3] md:aspect-square overflow-hidden rounded-xl bg-white border border-black/5">
+        <img 
+          src={product.imageUrl} 
+          alt={product.name}
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
+        
+        {/* Wishlist Button */}
+        <button 
+          className="absolute right-2 top-2 z-10 grid h-8 w-8 place-items-center rounded-full bg-white text-ink shadow-sm transition-transform hover:scale-105 active:scale-95"
+          onClick={(e) => {
+            e.stopPropagation()
+          }}
+          aria-label="Save to favorites"
+        >
+          <Icon name="heart" className="h-4 w-4" />
         </button>
-        <div className="mt-1 flex items-center gap-1 text-[13px] text-ink">
-          <span>{product.rating}</span>
-          <Icon name="star" className="h-3.5 w-3.5" />
+
+        {/* OFFER ribbon */}
+        {product.discount && (
+           <div className="absolute left-[-15px] top-[10px] z-10 -rotate-45 bg-[#ff4b2b] px-6 py-0.5 text-[9px] font-bold text-white uppercase tracking-wider shadow-sm">
+             OFFER
+           </div>
+        )}
+      </div>
+
+      {/* 2. Product Info (Conditional Title) */}
+      <div className="pt-1.5">
+        {showTitle && (
+          <h3 className="line-clamp-2 text-[13px] md:text-[15px] leading-snug text-ink mb-1">
+            {product.name}
+          </h3>
+        )}
+        
+        {/* 3. Pricing Row (Tightened for mobile) */}
+        <div className="flex flex-wrap items-center gap-1">
+          <span className="text-[14px] md:text-[16px] font-bold text-ink">
+            {product.price}
+          </span>
+          {product.originalPrice && (
+            <div className="flex items-center gap-1 text-[11px] md:text-[13px] text-muted">
+              <span className="line-through">{product.originalPrice}</span>
+              <span className="hidden sm:inline">({product.discount})</span>
+            </div>
+          )}
         </div>
-        <div className="mt-1 flex flex-wrap items-center gap-1 text-[13px]">
-          <span className="font-semibold text-[#258635]">{product.price}</span>
-          {product.originalPrice ? <span className="text-muted line-through">{product.originalPrice}</span> : null}
-          {product.discount ? <span className="font-medium text-muted">({product.discount})</span> : null}
+
+        {/* 4. Green Badge */}
+        <div className="mt-0.5">
+           <span className="inline-block rounded-full bg-sale-green/10 px-1.5 py-0.5 text-[10px] font-bold text-sale-green">
+             FREE delivery
+           </span>
         </div>
       </div>
     </article>

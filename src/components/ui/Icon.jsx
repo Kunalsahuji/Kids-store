@@ -37,6 +37,16 @@ const paths = {
       strokeWidth="1.8"
     />
   ),
+  chevronDown: (
+    <path
+      d="m7 10 5 5 5-5"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.8"
+    />
+  ),
   gift: (
     <>
       <path d="M5 10h14v9H5z" fill="none" stroke="currentColor" strokeWidth="1.8" />
@@ -81,7 +91,7 @@ const paths = {
   ),
   arrow: (
     <path
-      d="M7 12h10m0 0-4-4m4 4-4 4"
+      d="M5 12h14m-6-6 6 6-6 6"
       fill="none"
       stroke="currentColor"
       strokeLinecap="round"
