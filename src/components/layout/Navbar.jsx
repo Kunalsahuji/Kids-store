@@ -3,7 +3,7 @@ import { Icon } from '../ui/Icon'
 
 export function Navbar({ onOpenMenu }) {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-black/10 bg-white px-3 py-2">
+    <header className="sticky top-0 z-50 w-full border-b border-black/10 bg-[#FAF8F5] px-3 py-2">
       <div className="flex items-center justify-between gap-2 max-w-[1400px] mx-auto">
         
         {/* Left: Mobile Menu */}

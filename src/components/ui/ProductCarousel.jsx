@@ -61,7 +61,7 @@ export function ProductCarousel({ products, onSelectProduct, slidesPerViewDeskto
         {canShowMoreMobile ? (
           <div className="mt-5 flex justify-center">
             <button
-              className="rounded-full border border-line bg-white px-5 py-2 text-sm font-semibold text-ink"
+              className="rounded-full border border-line bg-[#FAF8F5] px-5 py-2 text-sm font-semibold text-ink"
               type="button"
               onClick={() => setIsExpandedMobile(true)}
             >

@@ -52,6 +52,10 @@ body {
   line-height: 1.4;
 }
 
+main {
+  background-color: var(--color-etsy-cream);
+}
+
 /* Custom Utilities for Etsy Layouts */
 .font-serif-display {
   font-family: var(--font-serif);

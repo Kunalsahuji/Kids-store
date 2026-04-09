@@ -7,17 +7,25 @@ export function PromoSection() {
   ]
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-10 bg-cream">
       <div className="container-shell px-4">
-        {/* Exact Etsy Heading */}
-        <h2 className="font-serif-display text-[26px] md:text-[32px] text-ink mb-6">
+        {/* Exact Typography match (Sans-serif, Bold, 18px) */}
+        <h2 
+          className="text-ink mb-4 font-bold"
+          style={{
+            fontSize: '18px',
+            lineHeight: '23.4px',
+            letterSpacing: '-0.18px',
+            fontFamily: 'var(--font-sans)'
+          }}
+        >
           Jump into featured interests
         </h2>
 
-        {/* Horizontal Scrollable Carousel (Side-peeking Cards) */}
-        <div className="hide-scrollbar flex gap-4 overflow-x-auto -mx-4 px-4 md:grid md:grid-cols-4 md:mx-0 md:px-0 lg:grid-cols-4 lg:gap-6">
+        {/* Horizontal Slider with Peeking Cards */}
+        <div className="hide-scrollbar flex gap-4 overflow-x-auto -mx-4 px-4 pb-2 md:grid md:grid-cols-4 md:mx-0 md:px-0">
           {interests.map((item, index) => (
-            <div key={index} className="min-w-[180px] w-[200px] md:w-full flex flex-col gap-3 group shrink-0">
+            <div key={index} className="w-[145px] flex flex-col gap-3 group shrink-0 md:w-full">
               <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-black/5 bg-[#f4f4f4] transition-transform group-hover:scale-[1.02] active:scale-95">
                 <img 
                   src={item.imageUrl} 
@@ -26,7 +34,7 @@ export function PromoSection() {
                   loading="lazy" 
                 />
               </div>
-              <span className="text-[14px] md:text-[16px] font-bold text-ink underline underline-offset-4 decoration-black/20 group-hover:decoration-black">
+              <span className="text-[14px] font-bold text-ink underline underline-offset-4 decoration-black/10 group-hover:decoration-black">
                 {item.label}
               </span>
             </div>

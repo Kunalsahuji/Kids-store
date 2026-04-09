@@ -14,12 +14,12 @@ export function ProductVisual({ product, mediaIndex = 0, detail = false }) {
   return (
     <div className={`relative overflow-hidden ${detail ? 'aspect-[1.02]' : 'aspect-[0.95]'} rounded-xl bg-gradient-to-br ${product.tint}`}>
       <div className="absolute inset-0 opacity-60" style={{ background: `radial-gradient(circle at 20% 20%, ${secondary}66, transparent 30%), radial-gradient(circle at 80% 18%, ${tertiary}55, transparent 24%)` }} />
-      <div className="absolute inset-x-0 top-0 h-[16%] bg-white/55" />
+      <div className="absolute inset-x-0 top-0 h-[16%] bg-[#FAF8F5]/55" />
       <div className="flex h-full items-center justify-center p-5">
-        <div className="relative h-[78%] w-[78%] rounded-lg bg-white/78 shadow-sm ring-1 ring-black/5">
+        <div className="relative h-[78%] w-[78%] rounded-lg bg-[#FAF8F5]/78 shadow-sm ring-1 ring-black/5">
           <div className="absolute inset-x-[10%] top-[10%] h-[22%] rounded-md" style={{ background: `${primary}cc` }} />
-          <div className="absolute inset-x-[10%] top-[37%] h-[38%] rounded-md bg-white/90" />
-          <div className="absolute left-[12%] top-[12%] h-[8%] w-[40%] rounded-full bg-white/90" />
+          <div className="absolute inset-x-[10%] top-[37%] h-[38%] rounded-md bg-[#FAF8F5]/90" />
+          <div className="absolute left-[12%] top-[12%] h-[8%] w-[40%] rounded-full bg-[#FAF8F5]/90" />
           {media.accent === 'circle' ? (
             <>
               <div className="absolute left-[17%] top-[44%] h-12 w-12 rounded-full" style={{ background: `${secondary}cc` }} />
@@ -45,7 +45,7 @@ export function ProductVisual({ product, mediaIndex = 0, detail = false }) {
               ))}
             </div>
           ) : null}
-          <div className="absolute bottom-[10%] left-[10%] h-[10%] w-[76%] rounded-md bg-white/92" />
+          <div className="absolute bottom-[10%] left-[10%] h-[10%] w-[76%] rounded-md bg-[#FAF8F5]/92" />
         </div>
       </div>
     </div>

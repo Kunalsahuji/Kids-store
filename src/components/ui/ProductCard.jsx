@@ -6,7 +6,7 @@ export function ProductCard({ product, onSelect, showTitle = true }) {
   return (
     <article className="group cursor-pointer select-none" onClick={() => onSelect?.(product.id)}>
       {/* 1. Image with Top-Right Wishlist */}
-      <div className="relative aspect-[4/3] md:aspect-square overflow-hidden rounded-xl bg-white border border-black/5">
+      <div className="relative aspect-[4/3] md:aspect-square overflow-hidden rounded-xl bg-[#FAF8F5] border border-black/5">
         <img 
           src={product.imageUrl} 
           alt={product.name}
@@ -16,7 +16,7 @@ export function ProductCard({ product, onSelect, showTitle = true }) {
         
         {/* Wishlist Button */}
         <button 
-          className="absolute right-2 top-2 z-10 grid h-8 w-8 place-items-center rounded-full bg-white text-ink shadow-sm transition-transform hover:scale-105 active:scale-95"
+          className="absolute right-2 top-2 z-10 grid h-8 w-8 place-items-center rounded-full bg-[#FAF8F5] text-ink shadow-sm transition-transform hover:scale-105 active:scale-95"
           onClick={(e) => {
             e.stopPropagation()
           }}

@@ -9,7 +9,7 @@ export function ProductDetailPage({ product, onSelectProduct }) {
   const [activeMedia, setActiveMedia] = useState(0)
 
   return (
-    <main className="pb-20 bg-white">
+    <main className="pb-20 bg-[#FAF8F5]">
       <section className="pt-4 md:pt-8 container-shell">
         {/* 1. Breadcrumbs (Etsy Style) */}
         <nav className="mb-6 flex items-center gap-2 text-[13px] text-muted overflow-hidden whitespace-nowrap">
@@ -46,7 +46,7 @@ export function ProductDetailPage({ product, onSelectProduct }) {
                 alt={product.name}
               />
               {/* Wishlist button over main image */}
-               <button className="absolute right-4 top-4 grid h-12 w-12 place-items-center rounded-full bg-white text-ink shadow-lg transition hover:scale-105 active:scale-95">
+               <button className="absolute right-4 top-4 grid h-12 w-12 place-items-center rounded-full bg-[#FAF8F5] text-ink shadow-lg transition hover:scale-105 active:scale-95">
                 <Icon name="heart" className="h-6 w-6" />
               </button>
             </div>

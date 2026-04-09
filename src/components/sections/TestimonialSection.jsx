@@ -14,7 +14,7 @@ export function TestimonialSection() {
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {testimonials.map((item) => (
-            <article key={item.id} className="card-panel bg-white p-7 md:p-8">
+            <article key={item.id} className="card-panel bg-[#FAF8F5] p-7 md:p-8">
               <div className="mb-5 flex gap-1 text-orange">
                 <span>★</span>
                 <span>★</span>
